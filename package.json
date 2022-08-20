@@ -11,6 +11,7 @@
     "lint:fix": "eslint . --ext .ts --fix"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "@typegoose/typegoose": "^9.11.0",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
