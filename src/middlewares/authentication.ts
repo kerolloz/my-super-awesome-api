@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { IAuthRequest, IAuthToken } from '../auth';
 import { HttpException, UNAUTHORIZED } from '../core';
 import { JsonWebToken } from '../lib/JsonWebToken';
-import { AccountModel } from '../models/Account';
+import { UserModel } from '../models';
 
 export async function authenticate(
   req: Request,
@@ -18,7 +18,7 @@ export async function authenticate(
   }
   const decoded_token = JsonWebToken.decode(token) as IAuthToken;
   if (decoded_token) {
-    const user = await AccountModel.findById(decoded_token.id);
+    const user = await UserModel.findById(decoded_token.id);
     if (user && JsonWebToken.verify(token, user.password)) {
       (req as IAuthRequest).currentUser = user;
       return next();
