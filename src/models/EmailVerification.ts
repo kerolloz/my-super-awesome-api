@@ -1,4 +1,9 @@
-import { getModelForClass, post, prop, Ref } from '@typegoose/typegoose';
+import {
+  DocumentType,
+  getModelForClass,
+  post,
+  prop,
+} from '@typegoose/typegoose';
 import { randomUUID } from 'crypto';
 import { VerificationMailer } from '../mailer';
 import BaseModel from './BaseModel';
@@ -13,8 +18,13 @@ export class EmailVerification extends BaseModel {
   @prop({ required: true, unique: true, default: randomUUID })
   code!: string;
 
-  @prop({ required: true, unique: true, ref: () => UserModel.modelName })
-  user!: Ref<User>;
+  @prop({
+    required: true,
+    unique: true,
+    autopopulate: true,
+    ref: () => UserModel.modelName,
+  })
+  user!: DocumentType<User>;
 }
 
 export const EmailVerificationModel = getModelForClass(EmailVerification, {
