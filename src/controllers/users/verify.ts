@@ -16,7 +16,7 @@ export default endpoint(
         message: 'Invalid verification code.',
       });
     }
-    const user = await UserModel.findOne({ email: verification.email });
+    const user = await UserModel.findById(verification.user);
     if (!user) {
       throw new HttpException(UNAUTHORIZED, {
         message: 'Invalid verification code.',

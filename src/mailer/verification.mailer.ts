@@ -35,6 +35,7 @@ export class VerificationMailer extends BaseMailer {
     <p style="font-size: 16px">
       Please use <a href='${verificationLink}' target='_blank'>this</a> link to <b>verify your Email.</b>
       <br>
+      This link will be invalid in 30 minutes.
     </p>
     `;
   }
