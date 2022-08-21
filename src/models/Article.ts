@@ -1,6 +1,7 @@
-import { getModelForClass, prop } from '@typegoose/typegoose';
+import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
 import Joi from 'joi';
 import PaginatedModel from './PaginatedModel';
+import { User, UserModel } from './User';
 
 export class Article extends PaginatedModel {
   @prop({ required: true })
@@ -8,6 +9,9 @@ export class Article extends PaginatedModel {
 
   @prop({ required: true })
   content!: string;
+
+  @prop({ required: true, ref: () => UserModel.modelName })
+  user!: Ref<User>;
 }
 
 export const ArticleModel = getModelForClass(Article);
