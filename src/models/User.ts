@@ -28,11 +28,12 @@ export const UserModel = getModelForClass(User, {
 });
 
 export const userLoginValidations = {
-  email: Joi.string().email().required(),
+  email: Joi.string().required(),
   password: Joi.string().required(),
 };
 
 export const userSignupValidations = {
   name: Joi.string().required(),
-  ...userLoginValidations,
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
 };
