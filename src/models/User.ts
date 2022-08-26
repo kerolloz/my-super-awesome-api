@@ -14,7 +14,7 @@ import {
 @HasPassword
 @CanGenerateToken
 export class User extends BaseModel {
-  @prop({ required: true, unique: true, trim: true })
+  @prop({ required: true, unique: true, trim: true, lowercase: true })
   email!: string;
 
   @prop({ required: true, trim: true })
