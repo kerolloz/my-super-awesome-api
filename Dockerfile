@@ -47,4 +47,4 @@ COPY --chown=node:node --from=build dist ./dist
 RUN npm prune --production && npm cache clean --force
 
 # ✅ See bullet point #8.2 about avoiding npm start
-CMD [ "node", "." ]
+CMD [ "node", "-r", "dotenv/config", "-r", "source-map-support/register", "." ]
