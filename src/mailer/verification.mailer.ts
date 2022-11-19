@@ -1,7 +1,7 @@
+import { MailDataRequired } from '@sendgrid/mail';
 import { frontendBaseURIEnvVar } from '../config';
 import { User } from '../models';
 import { BaseMailer } from './base.mailer';
-import { MailDataRequired } from '@sendgrid/mail';
 
 export class VerificationMailer extends BaseMailer {
   private readonly SUBJECT = 'Verify your Email';
@@ -27,13 +27,14 @@ export class VerificationMailer extends BaseMailer {
 
   get html(): string {
     const { name, verificationToken } = this;
-    const verificationLink = `${frontendBaseURIEnvVar}/verify?token=${verificationToken}`;
+    const verificationLink = `${frontendBaseURIEnvVar}/verify?code=${verificationToken}`;
 
     return `
-    <h1 align='center'>Welcome!</h1> <br>
+    <h1>Welcome!</h1> <br>
     <h3>We are happy to see you, ${name}.</h3>
     <p style="font-size: 16px">
-      Please use <a href='${verificationLink}' target='_blank'>this</a> link to <b>verify your Email.</b>
+      Please use the following link to <b>verify</b> your email.<br>
+      <a href='${verificationLink}' target='_blank'>${verificationLink}</a>
       <br>
       This link will be invalid in 30 minutes.
     </p>
