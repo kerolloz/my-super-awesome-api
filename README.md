@@ -3,7 +3,7 @@
 > **Warning**  
 > This is app is used for demonstration purposes only.
 
-This is the backend repository for _my super awesome app_. It's built using NodeJS and ExpressJS. I mainly created it as a toy app to demonestrate a full-stack app deployment. Here's the tutorial [link](https://).
+This is the backend repository for _my super awesome app_. It's built using NodeJS and ExpressJS. I mainly created it as a toy app to demonestrate a full-stack app deployment. Here's the tutorial [link](https://blog.kero.cf/free-deployment-for-your-full-stack-web-application).
 
 <sup>Frontend repo 👉 [kerolloz/my-super-awesome-app](https://github.com/kerolloz/my-super-awesome-app)</sup>
 
