@@ -4,7 +4,7 @@
 # In the second stage, we start fresh and only copy necessary files. We also purge node_modules devDependencies.
 
 #### --- Build stage --- ####
-FROM node:16-alpine AS build
+FROM node:18-alpine AS build
 
 # Update npm to latest version
 RUN npm i -g npm
