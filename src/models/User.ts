@@ -10,8 +10,8 @@ import {
   IsVerifiable,
 } from './mixins';
 
-@IsVerifiable
 @HasPassword
+@IsVerifiable
 @CanGenerateToken
 export class User extends BaseModel {
   @prop({ required: true, unique: true, trim: true, lowercase: true })
