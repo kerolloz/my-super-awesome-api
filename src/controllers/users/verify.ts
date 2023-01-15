@@ -14,7 +14,7 @@ export default endpoint(
       });
     }
 
-    verification.user.set({ isVerified: true });
+    verification.user.set({ _isVerified: true });
     await verification.user.save();
     await verification.remove();
 

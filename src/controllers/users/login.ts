@@ -6,7 +6,7 @@ export default endpoint({ body: userLoginValidations }, async (req) => {
   const user = await UserModel.findOne({ email });
 
   if (user && (await user.authenticate(password))) {
-    if (!user.isVerified) {
+    if (!user._isVerified) {
       throw new HttpException(UNAUTHORIZED, {
         message: 'Please verify your email address first.',
       });
