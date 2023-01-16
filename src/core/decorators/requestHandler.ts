@@ -3,8 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 import {
   BAD_REQUEST,
   HttpException,
-  UNPROCESSABLE_ENTITY,
   NOT_FOUND,
+  UNPROCESSABLE_ENTITY,
 } from '../exceptions';
 import {
   IDuplicateKeyError,
@@ -38,6 +38,10 @@ export function requestHandler(handler: EndpointHandler) {
         );
       }
       if (err instanceof mongoose.Error.ValidationError) {
+        if (err.message.includes('CastError')) {
+          return next(new Error(err.message));
+        }
+
         return next(
           new HttpException(UNPROCESSABLE_ENTITY, {
             message: VALIDATION_ERROR,
