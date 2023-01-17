@@ -22,10 +22,7 @@ export function HasPassword<TBase extends Constructor>(Base: TBase) {
     @prop({
       required: true,
       alias: 'password',
-      minlength: [
-        8,
-        'Your `password` must consist of at least 8 characters (got {MINLENGTH})',
-      ],
+      minlength: [8, 'Your `password` must consist of at least 8 character'],
     })
     _password!: string;
     password!: string; // just for TypeScript, not stored in DB
