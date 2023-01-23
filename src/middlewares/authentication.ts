@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { IAuthRequest, IAuthToken } from '../auth';
 import { HttpException, UNAUTHORIZED } from '../core';
 import { JsonWebToken } from '../lib/JsonWebToken';
 import { UserModel } from '../models';
+import { IAuthRequest, IAuthToken } from '../types/auth';
 
 export async function authenticate(
   req: Request,

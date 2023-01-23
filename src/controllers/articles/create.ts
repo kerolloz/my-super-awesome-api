@@ -1,8 +1,8 @@
 import formidable, { File } from 'formidable';
-import { IAuthRequest } from '../../auth';
 import { BAD_REQUEST, endpoint, HttpException } from '../../core';
 import { ArticleModel } from '../../models';
 import { ImageUploader } from '../../services';
+import { IAuthRequest } from '../../types/auth';
 
 export default endpoint(async (req) => {
   const aacceptedContentType = 'multipart/form-data';
