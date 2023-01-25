@@ -1,80 +1,57 @@
-import formidable, { File } from 'formidable';
+import { File } from 'formidable';
 import { BAD_REQUEST, endpoint, HttpException } from '../../core';
+import { FormParser } from '../../lib/FormParser';
 import { ArticleModel } from '../../models';
 import { ImageUploader } from '../../services';
 import { IAuthRequest } from '../../types/auth';
 
 export default endpoint(async (req) => {
   const aacceptedContentType = 'multipart/form-data';
+  // check 'content-type' header stars with multipart/form-data
+  // because 'content-type' header look like "multipart/form-data; boundary=..."
   const isAcceptedContentType =
-    req.headers['content-type'] === aacceptedContentType;
-
-  if (isAcceptedContentType) {
+    req.headers['content-type']?.startsWith(aacceptedContentType);
+  if (!isAcceptedContentType) {
     throw new HttpException(BAD_REQUEST, { message: 'Invalid content type' });
   }
-  const MAX_FILE_SIZE = 10 * 1024 * 1024; // meagbytes to bytes
-  const form = formidable({
+
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 meagbytes to bytes
+  const form = new FormParser({
     maxFileSize: MAX_FILE_SIZE,
     keepExtensions: true,
     allowEmptyFiles: false,
   });
-  const body = await new Promise<{
-    title: string;
-    content: string;
-    file?: File;
-  }>((resolve, reject) =>
-    form.parse(req, (formError, fields, files) => {
-      if (formError) {
-        console.error(formError);
-        return reject(
-          new HttpException(BAD_REQUEST, { message: 'Invalid file' }),
-        );
-      }
-      const { title, content } = fields;
-      if (!title || !content) {
-        return reject(
-          new HttpException(BAD_REQUEST, {
-            message: "Add 'title' and 'content' fields",
-          }),
-        );
-      }
-      if (typeof title !== 'string' || typeof content !== 'string') {
-        return reject(
-          new HttpException(BAD_REQUEST, {
-            message: "'title' and 'content' fields must be strings",
-          }),
-        );
-      }
-
-      const image = files.image as File;
-      if (image && !image?.mimetype?.startsWith('image/')) {
-        return reject(
-          new HttpException(BAD_REQUEST, {
-            message: 'file must be an image',
-          }),
-        );
-      }
-
-      return resolve({
-        title,
-        content,
-        file: image,
-      });
-    }),
-  );
-
-  const { title, content, file } = body;
-  let image: string | undefined = undefined;
-  if (file) {
-    image = await ImageUploader.upload(file.filepath);
+  // parse form data
+  const { fields, files } = await form.parse(req).catch((err) => {
+    console.error(err);
+    throw new HttpException(BAD_REQUEST, {
+      message: 'Invalid form data',
+    });
+  });
+  // check `title` and `content` fields are strings
+  if (typeof fields.title !== 'string' || typeof fields.content !== 'string') {
+    throw new HttpException(BAD_REQUEST, {
+      message: "'title' and 'content' fields are missing",
+    });
   }
+  // check `image` field is a file and is an image
+  const imageFile = files.image as File | undefined;
+  const isImage = imageFile?.mimetype?.startsWith('image/');
+  if (imageFile && !isImage) {
+    throw new HttpException(BAD_REQUEST, {
+      message: 'file must be an image',
+    });
+  }
+
+  const user = (req as IAuthRequest).currentUser;
+  const { title, content } = fields;
+  // upload image to ImgBB
+  const image = imageFile
+    ? await ImageUploader.upload(imageFile.filepath)
+    : undefined;
+
   return {
     status: 201,
-    content: await ArticleModel.create({
-      title,
-      content,
-      image,
-      user: (req as IAuthRequest).currentUser,
-    }),
+    content: await ArticleModel.create({ title, content, image, user }),
   };
 });
