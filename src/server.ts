@@ -12,7 +12,6 @@ import routes from './routes';
 const { NODE_ENV = 'development', PORT } = process.env;
 const app = express();
 
-// [TODO] use winston
 const logger =
   NODE_ENV === 'development'
     ? morgan('dev')
