@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
+import formData from 'form-data';
 import fs from 'fs';
 import { imgbbKeyEnvVar } from '../config';
-import formData from 'form-data';
 
 export interface IImgbbResponseObject {
   data: { url: string };
