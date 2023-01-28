@@ -1,6 +1,5 @@
 import { DocumentType, modelOptions, plugin } from '@typegoose/typegoose';
 import mongooseAutoPopulate from 'mongoose-autopopulate';
-import mongooseIdValidator from 'mongoose-id-validator2';
 
 /**
  * Basic document model with timestamps enabled,
@@ -8,7 +7,6 @@ import mongooseIdValidator from 'mongoose-id-validator2';
  * __v field hidden,
  * and all the fields that start with an underscore are hidden.
  */
-@plugin(mongooseIdValidator)
 @plugin(mongooseAutoPopulate)
 @modelOptions({
   schemaOptions: {
