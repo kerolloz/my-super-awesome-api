@@ -1,4 +1,4 @@
-import { ObjectID } from 'bson';
+import { ObjectId } from 'bson';
 import { JsonWebToken } from '../../lib';
 import { Constructor } from '../../types';
 
@@ -11,7 +11,7 @@ export interface ICanGenerateToken {
 
 export function CanGenerateToken<TBase extends Constructor>(Base: TBase) {
   abstract class _CanGenerateToken extends Base implements ICanGenerateToken {
-    id!: ObjectID;
+    id!: ObjectId;
     password!: string;
 
     generateToken(): string {

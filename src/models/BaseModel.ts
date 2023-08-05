@@ -1,4 +1,4 @@
-import { DocumentType, modelOptions, plugin } from '@typegoose/typegoose';
+import { modelOptions, plugin } from '@typegoose/typegoose';
 import mongooseAutoPopulate from 'mongoose-autopopulate';
 
 /**
@@ -13,7 +13,7 @@ import mongooseAutoPopulate from 'mongoose-autopopulate';
     timestamps: true,
     toJSON: {
       versionKey: false,
-      transform: (_, doc: DocumentType<Record<string, unknown>>) => {
+      transform: (_, doc) => {
         const id = doc._id as string;
         const privateKeys = Object.keys(doc).filter((key) =>
           key.startsWith('_'),

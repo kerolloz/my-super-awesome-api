@@ -13,6 +13,7 @@ import {
 @HasPassword
 @IsVerifiable
 @CanGenerateToken
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export class User extends BaseModel {
   @prop({ required: true, unique: true, trim: true, lowercase: true })
   email!: string;
@@ -20,7 +21,7 @@ export class User extends BaseModel {
   @prop({ required: true, trim: true })
   name!: string;
 }
-// eslint-disable-next-line @typescript-eslint/naming-convention
+// eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-unsafe-declaration-merging
 export interface User extends IHasPassword, ICanGenerateToken, IIsVerifiable {}
 
 export const UserModel = getModelForClass(User, {

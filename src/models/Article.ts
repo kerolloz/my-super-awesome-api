@@ -1,9 +1,9 @@
 import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
 import { URL_REGEX } from '../regex/url';
-import PaginatedModel from './PaginatedModel';
+import BaseModel from './BaseModel';
 import { User, UserModel } from './User';
 
-export class Article extends PaginatedModel {
+export class Article extends BaseModel {
   @prop({ required: true, trim: true, minlength: 3 })
   title!: string;
 
