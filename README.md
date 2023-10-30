@@ -1,4 +1,4 @@
-# My Super Awesome API <a target="_blank" href="https://kounter.tk"><img align="right" src="https://t.ly/pukV" /></a>
+# My Super Awesome API <a target="_blank" href="https://kounter.kerolloz.dev"><img align="right" src="https://t.ly/Pc0Cf" /></a>
 
 > **Warning**  
 > This app is used for demonstration purposes only.
