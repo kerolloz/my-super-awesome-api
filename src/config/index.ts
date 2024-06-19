@@ -3,4 +3,4 @@ export * from './mongo.env';
 export * from './jwt.env';
 export * from './email.env';
 export * from './frontend.env';
-export * from './imgbb.env';
+export * from './image.env';

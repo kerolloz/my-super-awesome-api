@@ -1,28 +1,27 @@
-import axios, { AxiosError } from 'axios';
+import axios, { type AxiosError } from 'axios';
 import formData from 'form-data';
-import fs from 'fs';
-import { imgbbKeyEnvVar } from '../config';
+import fs from 'node:fs';
+import { imgUploadApiKeyKeyEnvVar } from '../config';
 
-export interface IImgbbResponseObject {
-  data: { url: string };
+export interface IImghippoResponseObject {
+  data: { view_url: string };
 }
 
-export class ImageUploader {
-  static async upload(imagePath: string): Promise<string> {
+export const ImageUploader = {
+  upload: async (imagePath: string): Promise<string> => {
     const form = new formData();
-    form.append('key', imgbbKeyEnvVar);
-    form.append('image', fs.createReadStream(imagePath));
+    form.append('file', fs.createReadStream(imagePath));
 
     try {
-      const res = await axios.post<IImgbbResponseObject>(
-        'https://api.imgbb.com/1/upload',
+      const res = await axios.post<IImghippoResponseObject>(
+        `https://www.imghippo.com/v1/upload?api_key=${imgUploadApiKeyKeyEnvVar}`,
         form,
       );
-      return res.data.data.url;
+      return res.data.data.view_url;
     } catch (error) {
       const e = error as AxiosError;
       console.error(e.response?.data);
       throw new Error('Error uploading image');
     }
-  }
-}
+  },
+};
