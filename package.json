@@ -11,7 +11,6 @@
     "lint:fix": "eslint . --ext .ts --fix"
   },
   "dependencies": {
-    "@sendgrid/mail": "^7.7.0",
     "@typegoose/typegoose": "^11.4.1",
     "axios": "^1.6.0",
     "bcryptjs": "^2.4.3",
@@ -26,6 +25,7 @@
     "helmet": "^7.0.0",
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.1",
+    "mailersend": "^2.2.0",
     "mongodb": "^5.8.0",
     "mongoose": "^7.4.2",
     "mongoose-autopopulate": "^1.0.1",

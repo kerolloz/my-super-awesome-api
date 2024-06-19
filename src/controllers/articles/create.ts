@@ -2,7 +2,7 @@ import { BAD_REQUEST, endpoint, HttpException } from '../../core';
 import { FormParser } from '../../lib/FormParser';
 import { ArticleModel } from '../../models';
 import { ImageUploader } from '../../services';
-import { IAuthRequest } from '../../types/auth';
+import type { IAuthRequest } from '../../types/auth';
 
 export default endpoint(async (req) => {
   const acceptedContentType = 'multipart/form-data';
@@ -29,6 +29,8 @@ export default endpoint(async (req) => {
   });
   // check `title` and `content` fields are strings
   if (
+    fields.title === undefined ||
+    fields.content === undefined ||
     typeof fields.title[0] !== 'string' ||
     typeof fields.content[0] !== 'string'
   ) {
@@ -46,8 +48,8 @@ export default endpoint(async (req) => {
   }
 
   const user = (req as IAuthRequest).currentUser;
-  const title = fields.title[0],
-    content = fields.content[0];
+  const title = fields.title[0];
+  const content = fields.content[0];
   // upload image to ImgBB
   const image = imageFile
     ? await ImageUploader.upload(imageFile.filepath)

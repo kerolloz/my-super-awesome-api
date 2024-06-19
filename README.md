@@ -9,23 +9,11 @@ This is the backend repository for _my super awesome app_. It's built using Node
 
 ## Usage
 
-You need a `.env` file with the following variables defined.
-You can use the `.env.example` file as a template.
-
 ```bash
-PORT=5000
-MONGODB_URI=mongodb://localhost/your-database-name
-JWT_SECRET_KEY=very-secret-key
-SENDGRID_API_KEY=123
-SENDGRID_FROM_EMAIL=your-email
-FRONTEND_BASE_URI=http://localhost:3000
-IMGBB_KEY=abc123
-```
-
-```bash
-npm i            # install required dependencies
-npm run dev      # start development server
-npm run build    # build for production
+cp .env.example .env  # create a new .env file and fill in the required variables
+npm i                 # install required dependencies
+npm run dev           # start development server
+npm run build         # build for production
 ```
 
 ## Docker

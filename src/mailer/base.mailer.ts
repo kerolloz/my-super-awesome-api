@@ -1,23 +1,37 @@
-import sgMail, { MailDataRequired } from '@sendgrid/mail';
-import { sendGridFromEmailEnvVar, sendGridAPIKeyEnvVar } from '../config';
+import { EmailParams, MailerSend, Recipient, Sender } from 'mailersend';
+import {
+  emailAPIKeyEnvVar,
+  emailFromAddressEnvVar,
+  emailFromNameEnvVar,
+} from '../config';
 
-sgMail.setApiKey(sendGridAPIKeyEnvVar);
+const mailerSend = new MailerSend({ apiKey: emailAPIKeyEnvVar });
+const sentFrom = new Sender(emailFromAddressEnvVar, emailFromNameEnvVar);
 
 export abstract class BaseMailer {
-  protected readonly from = {
-    name: 'The Super Awesome App',
-    email: sendGridFromEmailEnvVar,
+  protected abstract get msg(): {
+    to: { email: string; name: string };
+    subject: string;
+    html: string;
   };
-  protected abstract get msg(): MailDataRequired;
 
   public sendEmail() {
     if (!this.msg) {
       throw new Error('Email not set');
     }
 
-    sgMail
-      .send(this.msg)
-      .then(() => console.log(`An email was sent to ${this.msg.to as string}`))
+    const recipients = [new Recipient(this.msg.to.email, this.msg.to.name)];
+    const emailParams = new EmailParams()
+      .setFrom(sentFrom)
+      .setTo(recipients)
+      .setSubject(this.msg.subject)
+      .setHtml(this.msg.html);
+
+    mailerSend.email
+      .send(emailParams)
+      .then(() =>
+        console.log(`An email was sent to ${JSON.stringify(this.msg.to)}`),
+      )
       .catch(console.error);
   }
 }
