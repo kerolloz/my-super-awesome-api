@@ -13,7 +13,7 @@ import authenticate from './lib/authenticate';
 import { SWAGGER_ROUTE, registerSwagger } from './lib/swagger';
 import { registerAllRoutes } from './routes';
 
-const app = fastify();
+const app = fastify({ pluginTimeout: 0 });
 
 app.register(cors);
 app.register(helmet);

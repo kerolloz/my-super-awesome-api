@@ -20,9 +20,9 @@ npm run build         # Ensure TypeScript is happy :)
 
 ## Docker
 
-Before building the image, you must create a `.env` file with the same variables as above.
+Before running the image, you must create a `.env` file with the same variables as above.
 
 ```bash
 docker build -t my-super-awesome-api .
-docker run -p 5000:5000 my-super-awesome-api
+docker run -p 5000:5000 --env-file=.env -it --network=host my-super-awesome-api # use --network=host for local development
 ```

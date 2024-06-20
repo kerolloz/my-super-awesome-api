@@ -32,6 +32,6 @@ export abstract class BaseMailer {
       .then(() =>
         console.log(`An email was sent to ${JSON.stringify(this.msg.to)}`),
       )
-      .catch(console.error);
+      .catch((err) => console.error('Failed to send email!', err));
   }
 }
