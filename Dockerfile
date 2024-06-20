@@ -34,4 +34,5 @@ COPY --from=prerelease /usr/src/app/tsconfig.json .
 
 # run the app
 USER bun
+EXPOSE 8000
 CMD [ "bun", "start" ]
