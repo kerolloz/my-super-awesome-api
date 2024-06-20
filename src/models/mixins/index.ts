@@ -1,4 +1,3 @@
-export * from './CanGenerateToken';
-export * from './ExpiresAfter';
-export * from './HasPassword';
-export * from './IsVerifiable';
+export * from './ExpiresAfter.js';
+export * from './HasPassword.js';
+export * from './IsVerifiable.js';

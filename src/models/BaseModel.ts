@@ -1,4 +1,5 @@
 import { modelOptions, plugin } from '@typegoose/typegoose';
+import type { Func } from '@typegoose/typegoose/lib/types.js';
 import mongooseAutoPopulate from 'mongoose-autopopulate';
 
 /**
@@ -7,7 +8,7 @@ import mongooseAutoPopulate from 'mongoose-autopopulate';
  * __v field hidden,
  * and all the fields that start with an underscore are hidden.
  */
-@plugin(mongooseAutoPopulate)
+@plugin(mongooseAutoPopulate as unknown as Func)
 @modelOptions({
   schemaOptions: {
     timestamps: true,

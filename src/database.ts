@@ -1,16 +1,12 @@
-import colors from 'colors';
 import mongoose from 'mongoose';
-import { mongoURIEnvVar } from './config';
+import { mongoURIEnvVar } from './config/index.js';
 
-export async function connect(): Promise<void> {
+export async function connectToDatabase() {
   try {
     await mongoose.connect(mongoURIEnvVar);
-
-    console.info(colors.green('Successfully connected to Mongodb ✅'));
+    console.info('Successfully connected to Mongodb ✅');
   } catch (err) {
-    console.error(
-      colors.red(`Failed to connect to ${colors.yellow(mongoURIEnvVar)}`),
-    );
+    console.error(`Failed to connect to ${mongoURIEnvVar}`);
     throw err;
   }
 }

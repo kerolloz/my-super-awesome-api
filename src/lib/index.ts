@@ -1,3 +1,2 @@
-export * from './JsonWebToken';
-export * from './Password';
-export * from './QueryParser';
+export * from './types.js';
+export * from './swagger.js';

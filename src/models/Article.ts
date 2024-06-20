@@ -1,7 +1,8 @@
-import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
-import { URL_REGEX } from '../regex/url';
-import BaseModel from './BaseModel';
-import { User, UserModel } from './User';
+import { getModelForClass, prop, type Ref } from '@typegoose/typegoose';
+import BaseModel from './BaseModel.js';
+import { type User, UserModel } from './User.js';
+
+const URL_REGEX = /^(http:\/\/|https:\/\/).+/;
 
 export class Article extends BaseModel {
   @prop({ required: true, trim: true, minlength: 3 })

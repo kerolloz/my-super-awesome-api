@@ -1,20 +1,22 @@
-import { Router } from 'express';
-import { endpoint, HttpException, NOT_FOUND } from '../core';
-import articles from './articles';
-import users from './users';
+import fs from 'node:fs/promises';
+import type { FastifyZodInstance } from '../lib/index.js';
 
-const router = Router();
+export const registerAllRoutes = async (app: FastifyZodInstance) => {
+  console.log('Reading files in the current directory...');
+  const files = await fs.readdir(import.meta.dirname);
+  console.log(files);
 
-router.get(
-  '/ping',
-  endpoint(() => 'pong 🏓'),
-);
-
-router.use('/articles', articles);
-router.use(users);
-
-router.use('*', () => {
-  throw new HttpException(NOT_FOUND, { message: 'Are you lost? 🤔' });
-});
-
-export default router;
+  // Read *.route.ts files in the current directory
+  // register them by calling their default export and passing the app instance
+  console.log('Registering routes...');
+  await Promise.all(
+    files
+      .filter((file) => file.endsWith('.route.js'))
+      .map(async (file) => {
+        const routeFile = await import(`./${file}`);
+        routeFile.default(app);
+        console.log(`Route ${file} registered`);
+      }),
+  );
+  return;
+};

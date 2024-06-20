@@ -3,7 +3,7 @@ import {
   emailAPIKeyEnvVar,
   emailFromAddressEnvVar,
   emailFromNameEnvVar,
-} from '../config';
+} from '../config/index.js';
 
 const mailerSend = new MailerSend({ apiKey: emailAPIKeyEnvVar });
 const sentFrom = new Sender(emailFromAddressEnvVar, emailFromNameEnvVar);

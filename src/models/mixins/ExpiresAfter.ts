@@ -1,5 +1,5 @@
 import { index, prop } from '@typegoose/typegoose';
-import { Constructor } from '../../types';
+import type { Constructor } from '../../types/index.js';
 
 export interface ICanExpire {
   /**
@@ -17,7 +17,7 @@ export interface ICanExpire {
  *
  */
 export function ExpiresAfter(seconds: number) {
-  return function <TBase extends Constructor>(Base: TBase) {
+  return <TBase extends Constructor>(Base: TBase) => {
     @index({ expiresAt: 1 }, { expireAfterSeconds: 1 })
     abstract class _CanExpire extends Base implements ICanExpire {
       @prop({

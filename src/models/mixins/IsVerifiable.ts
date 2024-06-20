@@ -1,5 +1,5 @@
 import { prop } from '@typegoose/typegoose';
-import { Constructor } from '../../types';
+import type { Constructor } from '../../types/index.js';
 
 export interface IIsVerifiable {
   _isVerified: boolean;

@@ -1,6 +1,6 @@
 import { pre, prop } from '@typegoose/typegoose';
-import { Password } from '../../lib';
-import { Constructor } from '../../types';
+import { Password } from '../../lib/Password.js';
+import type { Constructor } from '../../types/index.js';
 
 export interface IHasPassword {
   _password: string;
