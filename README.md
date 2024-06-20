@@ -24,5 +24,5 @@ Before running the image, you must create a `.env` file with the same variables 
 
 ```bash
 docker build -t my-super-awesome-api .
-docker run -p 5000:5000 --env-file=.env -it --network=host my-super-awesome-api # use --network=host for local development
+docker run -p 5000:5000 --env-file=.env -it --init --network=host my-super-awesome-api # use --network=host for local development
 ```

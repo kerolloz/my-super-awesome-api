@@ -1,6 +1,6 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM oven/bun as base
+FROM oven/bun:1 as base
 WORKDIR /usr/src/app
 
 # install dependencies into temp directory
@@ -34,5 +34,6 @@ COPY --from=prerelease /usr/src/app/tsconfig.json .
 
 # run the app
 USER bun
-EXPOSE 8000
-CMD [ "bun", "start" ]
+ARG PORT
+EXPOSE ${PORT:-3000}
+CMD [ "bun", "src/index.ts" ]
