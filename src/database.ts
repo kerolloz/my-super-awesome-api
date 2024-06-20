@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { mongoURIEnvVar } from './config/index.js';
+import { mongoURIEnvVar } from './config';
 
 export async function connectToDatabase() {
   try {

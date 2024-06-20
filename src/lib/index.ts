@@ -1,2 +1,2 @@
-export * from './types.js';
-export * from './swagger.js';
+export * from './types';
+export * from './swagger';

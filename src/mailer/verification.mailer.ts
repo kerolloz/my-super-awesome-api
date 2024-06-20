@@ -1,5 +1,5 @@
-import { frontendBaseURIEnvVar } from '../config/index.js';
-import { BaseMailer } from './base.mailer.js';
+import { frontendBaseURIEnvVar } from '../config';
+import { BaseMailer } from './base.mailer';
 
 export class VerificationMailer extends BaseMailer {
   private readonly SUBJECT = 'Verify your Email';

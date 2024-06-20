@@ -1,17 +1,17 @@
 import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
 import fastify from 'fastify';
+import FastifyFormidable from 'fastify-formidable';
 import {
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod';
 import { ZodError } from 'zod';
-import authenticate from './lib/authenticate.js';
-import { connectToDatabase } from './database.js';
-import { SWAGGER_ROUTE, registerSwagger } from './lib/swagger.js';
-import { registerAllRoutes } from './routes/index.js';
-import { env } from './config/index.js';
-import FastifyFormidable from 'fastify-formidable';
+import { env } from './config';
+import { connectToDatabase } from './database';
+import authenticate from './lib/authenticate';
+import { SWAGGER_ROUTE, registerSwagger } from './lib/swagger';
+import { registerAllRoutes } from './routes';
 
 const app = fastify();
 

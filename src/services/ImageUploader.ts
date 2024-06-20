@@ -1,7 +1,7 @@
+import fs from 'node:fs';
 import axios, { type AxiosError } from 'axios';
 import formData from 'form-data';
-import fs from 'node:fs';
-import { imgUploadApiKeyKeyEnvVar } from '../config/index.js';
+import { imgUploadApiKeyKeyEnvVar } from '../config';
 
 export interface IImghippoResponseObject {
   data: { view_url: string };

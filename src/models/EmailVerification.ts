@@ -1,14 +1,14 @@
+import { randomUUID } from 'node:crypto';
 import {
   type DocumentType,
   getModelForClass,
   post,
   prop,
 } from '@typegoose/typegoose';
-import { randomUUID } from 'node:crypto';
-import { VerificationMailer } from '../mailer/index.js';
-import BaseModel from './BaseModel.js';
-import { ExpiresAfter } from './mixins/index.js';
-import { type User, UserModel } from './User.js';
+import { VerificationMailer } from '../mailer';
+import BaseModel from './BaseModel';
+import { type User, UserModel } from './User';
+import { ExpiresAfter } from './mixins';
 
 @post('save', function (this: EmailVerification) {
   new VerificationMailer(this.user as User, this.code).sendEmail();

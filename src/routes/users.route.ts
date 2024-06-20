@@ -1,6 +1,6 @@
 import z from 'zod';
-import type { FastifyZodInstance } from '../lib/index.js';
-import { EmailVerificationModel, UserModel } from '../models/index.js';
+import type { FastifyZodInstance } from '../lib';
+import { EmailVerificationModel, UserModel } from '../models';
 
 export default (app: FastifyZodInstance) =>
   app

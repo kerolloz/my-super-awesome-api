@@ -1,4 +1,4 @@
-import env from './env.js';
+import env from './env';
 
 export const emailAPIKeyEnvVar = env('EMAIL_API_KEY');
 export const emailFromNameEnvVar = env('EMAIL_FROM_NAME');

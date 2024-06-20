@@ -1,2 +1,2 @@
-export * from './base.mailer.js';
-export * from './verification.mailer.js';
+export * from './base.mailer';
+export * from './verification.mailer';

@@ -1,3 +1,3 @@
-export * from './Article.js';
-export * from './EmailVerification.js';
-export * from './User.js';
+export * from './Article';
+export * from './EmailVerification';
+export * from './User';

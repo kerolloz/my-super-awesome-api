@@ -1,5 +1,5 @@
 import { modelOptions, plugin } from '@typegoose/typegoose';
-import type { Func } from '@typegoose/typegoose/lib/types.js';
+import type { Func } from '@typegoose/typegoose/lib/types';
 import mongooseAutoPopulate from 'mongoose-autopopulate';
 
 /**

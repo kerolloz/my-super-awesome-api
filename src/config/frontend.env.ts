@@ -1,3 +1,3 @@
-import env from './env.js';
+import env from './env';
 
 export const frontendBaseURIEnvVar = env('FRONTEND_BASE_URI');

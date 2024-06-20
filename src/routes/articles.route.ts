@@ -1,6 +1,6 @@
-import type { FastifyZodInstance } from '../lib/index.js';
-import { ArticleModel } from '../models/index.js';
-import { ImageUploader } from '../services/index.js';
+import type { FastifyZodInstance } from '../lib';
+import { ArticleModel } from '../models';
+import { ImageUploader } from '../services';
 
 export default (app: FastifyZodInstance) =>
   app

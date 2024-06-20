@@ -2,7 +2,7 @@ import fastifyJwt from '@fastify/jwt';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import fp from 'fastify-plugin';
 import { ObjectId } from 'mongodb';
-import { jwtSecretKeyEnvVar } from '../config/index.js';
+import { jwtSecretKeyEnvVar } from '../config';
 
 export default fp(async (fastify) => {
   fastify.register(fastifyJwt, {

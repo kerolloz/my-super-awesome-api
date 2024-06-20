@@ -1,5 +1,5 @@
 import { index, prop } from '@typegoose/typegoose';
-import type { Constructor } from '../../types/index.js';
+import type { Constructor } from '../../types';
 
 export interface ICanExpire {
   /**

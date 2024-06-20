@@ -1,6 +1,6 @@
-import { getModelForClass, prop, type Ref } from '@typegoose/typegoose';
-import BaseModel from './BaseModel.js';
-import { type User, UserModel } from './User.js';
+import { type Ref, getModelForClass, prop } from '@typegoose/typegoose';
+import BaseModel from './BaseModel';
+import { type User, UserModel } from './User';
 
 const URL_REGEX = /^(http:\/\/|https:\/\/).+/;
 
