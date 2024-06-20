@@ -15,7 +15,7 @@ This is the backend repository for _my super awesome app_. It's built using Bun 
 cp .env.example .env  # Create a new .env file and fill in the required variables
 bun i                 # Install required dependencies
 bun dev               # Start the development server with reload on changes
-npm run build         # Ensure TypeScript is happy :)
+bun run build         # Ensure TypeScript is happy :)
 ```
 
 ## Docker
