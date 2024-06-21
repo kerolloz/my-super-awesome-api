@@ -17,19 +17,18 @@ export default (app: FastifyZodInstance) =>
         const { email, password } = req.body;
         const user = await UserModel.findOne({ email });
 
-        if (user && (await user.authenticate(password))) {
-          if (!user._isVerified) {
-            return reply.status(401).send({
-              message: 'Please verify your email address first.',
-            });
-          }
-          const token = app.jwt.sign({ _id: user._id }, { expiresIn: '1d' });
-          return { user, token };
+        if (!(await user?.authenticate(password))) {
+          return reply.status(401).send({
+            message: 'Invalid email or password.',
+          });
         }
-
-        return reply.status(401).send({
-          message: 'Invalid email or password.',
-        });
+        if (!user?._isVerified) {
+          return reply.status(401).send({
+            message: 'Please verify your email address first.',
+          });
+        }
+        const token = app.jwt.sign({ _id: user._id }, { expiresIn: '1d' });
+        return { user, token };
       },
     })
     .route({
@@ -43,8 +42,7 @@ export default (app: FastifyZodInstance) =>
         }),
       },
       handler: async (req, reply) => {
-        const existingUser = await UserModel.exists({ email: req.body.email });
-        if (existingUser) {
+        if (await UserModel.exists({ email: req.body.email })) {
           return reply
             .status(400)
             .send({ message: 'User with this email already exists.' });
@@ -66,10 +64,9 @@ export default (app: FastifyZodInstance) =>
         }),
       },
       handler: async (req, reply) => {
-        const { code } = req.body as { code: string };
-        const verification = await EmailVerificationModel.findOne({ code });
+        const verification = await EmailVerificationModel.findOne(req.body);
 
-        if (!verification || !verification.user) {
+        if (!verification?.user) {
           return reply.status(401).send({
             message: 'Invalid verification code.',
           });
