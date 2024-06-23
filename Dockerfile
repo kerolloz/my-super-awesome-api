@@ -21,8 +21,9 @@ FROM base AS prerelease
 COPY --from=install /temp/dev/node_modules node_modules
 COPY . .
 
-# [optional] tests & build
 ENV NODE_ENV=production
+
+# [optional] build
 RUN bun run build
 
 # copy production dependencies and source code into final image
@@ -36,4 +37,4 @@ COPY --from=prerelease /usr/src/app/tsconfig.json .
 USER bun
 ARG PORT
 EXPOSE ${PORT:-3000}
-CMD [ "bun", "src/index.ts" ]
+CMD [ "bun", "start" ]

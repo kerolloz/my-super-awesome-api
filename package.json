@@ -4,8 +4,8 @@
   "private": "true",
   "main": "src/index.ts",
   "scripts": {
-    "start": "bun run .",
-    "dev": "bun run --watch .",
+    "start": "bun .",
+    "dev": "bun --watch .",
     "build": "tsc",
     "lint": "biome ci ."
   },
