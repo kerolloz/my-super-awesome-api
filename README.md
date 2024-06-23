@@ -2,7 +2,7 @@
 
 [![Build and Lint](https://github.com/kerolloz/my-super-awesome-api/actions/workflows/test.yml/badge.svg)](https://github.com/kerolloz/my-super-awesome-api/actions/workflows/test.yml)
 
-> **Warning**  
+> [!WARNING]
 > This app is used for demonstration purposes only.
 
 This is the backend repository for _my super awesome app_. It's built using _**Bun**_ and _**Fastify**_. It uses _**MongoDB**_ for the database.  
