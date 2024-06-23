@@ -5,7 +5,8 @@
 > **Warning**  
 > This app is used for demonstration purposes only.
 
-This is the backend repository for _my super awesome app_. It's built using Bun and Fastify. I mainly created it to demonstrate a full-stack app deployment. Here's the tutorial [link](https://blog.kerolloz.dev/free-deployment-for-your-full-stack-web-application).
+This is the backend repository for _my super awesome app_. It's built using _**Bun**_ and _**Fastify**_. It uses _**MongoDB**_ for the database.  
+I mainly created it to demonstrate a full-stack app deployment. Here's the tutorial [link](https://blog.kerolloz.dev/free-deployment-for-your-full-stack-web-application).
 
 <sup>Frontend repo 👉 [kerolloz/my-super-awesome-app](https://github.com/kerolloz/my-super-awesome-app)</sup>
 
@@ -17,6 +18,13 @@ bun i                 # Install required dependencies
 bun dev               # Start the development server with reload on changes
 bun run build         # Ensure TypeScript is happy :)
 ```
+
+## Services Used
+
+| Service             | URL                            | Source Code                                                                                      |
+|---------------------|--------------------------------|--------------------------------------------------------------------------------------------------|
+| Image uploads       | [imghippo.com](https://imghippo.com) | [src/services/ImageUploader.ts](https://github.com/kerolloz/my-super-awesome-api/blob/master/src/services/ImageUploader.ts) |
+| Email sending       | [mailersend.com](https://mailersend.com) | [src/mailer/base.mailer.ts](https://github.com/kerolloz/my-super-awesome-api/blob/master/src/mailer/base.mailer.ts)       |
 
 ## Docker
 
